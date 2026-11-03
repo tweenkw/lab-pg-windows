@@ -1,3 +1,7 @@
+-- Таблица audit_log хранит журнал изменений критичных данных.
+-- Записи создаются триггерами при UPDATE/DELETE в бизнес-таблицах.
+-- Поле actor — имя пользователя, выполнившего изменение.
+
 CREATE TABLE IF NOT EXISTS audit_log(
     id bigserial PRIMARY KEY,
     event_type text NOT NULL,
