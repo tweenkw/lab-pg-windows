@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+echo "[pre-commit] Запуск валидации миграций (PowerShell)..."
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "infra/scripts/validate-migrations.ps1"
+code=$?
+if [ $code -eq 0 ]; then
+    echo "[pre-commit] Валидация пройдена. Коммит разрешён."
+    exit 0
+else
+    echo ""
+    echo "[pre-commit] ОШИБКА: валидация не пройдена (код $code). Коммит ЗАБЛОКИРОВАН."
+    exit 1
+fi
