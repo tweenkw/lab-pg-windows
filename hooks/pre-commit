@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 echo "[pre-commit] Запуск валидации миграций (PowerShell)..."
+
+if [ ! -f "infra/scripts/validate-migrations.ps1" ]; then
+    echo "[pre-commit] ОШИБКА: скрипт валидации не найден."
+    exit 1
+fi
+
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "infra/scripts/validate-migrations.ps1"
 code=$?
 if [ $code -eq 0 ]; then
